@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:bionic
 MAINTAINER Joakim Bech (joakim.bech@linaro.org)
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # packages.
 RUN dpkg --add-architecture i386
 
-ENV TZ=Europe/Stockholm
+ENV TZ=India
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -79,7 +79,8 @@ RUN useradd --shell /bin/bash -u 1000 -o -c "" -m optee
 RUN echo 'optee:optee' | chpasswd && adduser optee sudo
 
 # Add and unpack the release
-ADD imx-linux-sumo-imx-4.14.98-2.1.0_8mq_drm-wv-2.2.cand20200235_oemcrypto-v15.tgz /home/optee/
+#ADD imx-linux-sumo-imx-4.14.98-2.1.0_8mq_drm-wv-2.3.cand20200616_oemcrypto-v15.tgz /home/optee/
+ADD imx-linux-sumo-imx-4.14.98-2.1.0_8mq_drm-wv-2.3.2.tgz /home/optee/
 
 # Add the modified script that uses a local repo reference
 ADD imx_linux_setup.sh /home/optee/release_linux_tarball/
